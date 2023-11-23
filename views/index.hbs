@@ -1,13 +1,12 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark p-3">
   <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">Password Generator</span>
+    <span class="navbar-brand mb-0 font-monospace fs-3">Password Generator</span>
   </div>
 </nav>
 {{! 表單 }}
 <div class="container p-0 mt-5 bg-white rounded">
   <div class="p-3">
-    <form>
-
+    <form action="/pwgenerator" method="POST">
       <div class="card-header bg-white mb-3">
         <h3 class="card-title fw-bold">Random Password Generator🗝️</h3>
       </div>
@@ -17,7 +16,15 @@
           <label for="pwlength" class="col-form-label fs-5">Password Length</label>
         </div>
         <div class="col-8">
-          <input type="number" class="form-control" id="pwlength" required />
+          <input
+            type="number"
+            class="form-control"
+            name="pwlength"
+            id="pwlength"
+            min="4"
+            max="16"
+            required
+          />
         </div>
       </div>
       {{! 勾選是否需要小寫字母 }}
@@ -31,7 +38,8 @@
             type="checkbox"
             class="form-check-input"
             id="lowercase"
-            value=""
+            name="lowercase"
+            value="true"
           />
           <p class="d-inline-block ms-2">(e.g. abcdefg)</p>
         </div>
@@ -47,7 +55,8 @@
             type="checkbox"
             class="form-check-input"
             id="uppercase"
-            value=""
+            name="uppercase"
+            vvalue="true"
           />
           <p class="d-inline-block ms-2">(e.g. ABCDEFG)</p>
         </div>
@@ -55,14 +64,15 @@
       {{! 勾選是否需要數字 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label for="include-num" class="col-form-label fs-5">Include Numbers</label>
+          <label for="includeNum" class="col-form-label fs-5">Include Numbers</label>
         </div>
         <div class="col-8">
           <input
             type="checkbox"
             class="form-check-input"
-            id="include-num"
-            value=""
+            id="includeNum"
+            name="includeNum"
+            value="true"
           />
           <p class="d-inline-block ms-2">(e.g. 123456)</p>
         </div>
@@ -70,15 +80,15 @@
       {{! 勾選是否需要符號 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label for="include-symbol" class="col-form-label fs-5">Include
-            Symbols</label>
+          <label for="includeSymbol" class="col-form-label fs-5">Include Symbols</label>
         </div>
         <div class="col-8">
           <input
             type="checkbox"
             class="form-check-input"
-            id="include-symbol"
-            value=""
+            id="includeSymbol"
+            name="includeSymbol"
+            value="true"
           />
           <p class="d-inline-block ms-2">(e.g. @#$%)</p>
         </div>
@@ -86,26 +96,43 @@
       {{! 不想顯示的字元 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label for="exclude-char" class="col-form-label fs-5">Exclude
+          <label for="excludeChar" class="col-form-label fs-5">Exclude
             Characters</label>
         </div>
         <div class="col-8">
-          <input type="text" class="form-control" id="exclude-char" />
+          <input
+            type="text"
+            class="form-control"
+            id="excludeChar"
+            name="excludeChar"
+          />
         </div>
       </div>
       {{! 顯示密碼欄位 }}
-      <div
-        class="mb-3 p-3 d-flex align-items-center rounded"
-        style="background-color: #e3fafc;"
-      >
-        <p class="m-0 fw-bold fs-5" style="color: #22b8cf;">Your passoword is:</p>
-        <p
-          class="m-0 ms-3 fw-bold font-monospace"
-          style="color: #f06595;"
-        >fg478gw4</p>
+      <div class="row">
+        <div class="col-4 d-flex align-items-center justify-content-center">
+          {{! 執行按鈕 }}
+          <button
+            type="submit"
+            class="btn btn-success font-monospace py-2 px-4"
+          >Generate Password</button></div>
+        <div class="col-8">
+          <div
+            class="p-3 d-flex align-items-center rounded"
+            style="background-color: #e3fafc;"
+          >
+            <p
+              class="m-0 fw-bold fs-5 font-monospace"
+              style="color: #22b8cf;"
+            >Your passoword is:</p>
+            <p
+              class="m-0 ms-3 fw-bold fs-4 font-monospace"
+              style="color: #f06595;"
+            >{{#if generatedPW}}{{generatedPW}}{{/if}}</p>
+          </div>
+        </div>
       </div>
-      {{! 執行按鈕 }}
-      <button type="submit" class="btn btn-success">Generate Password</button>
+
     </form>
   </div>
   <div class="card-footer p-3 text-end font-monospace text-muted">
