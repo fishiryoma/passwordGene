@@ -18,36 +18,16 @@ app.get("/pwgenerator", (req, res) => {
 });
 
 app.post("/pwgenerator", (req, res) => {
-  const pwlength = req.body.pwlength;
-  const checkLowercase = req.body.lowercase;
-  const checkUppercase = req.body.uppercase;
-  const checkNumber = req.body.includeNum;
-  const checkSymbol = req.body.includeSymbol;
-  const excludeCharacter = req.body.excludeChar;
-  const generatedPW = pwGenerator(
-    pwlength,
-    checkLowercase,
-    checkUppercase,
-    checkNumber,
-    checkSymbol,
-    excludeCharacter
-  );
-
-  res.render("index", { generatedPW });
+  const option = req.body;
+  const generatedPW = pwGenerator(option);
+  res.render("index", { generatedPW, option });
 });
 
 app.listen(port, () => {
   console.log(`express is running on http://localhost:${port}`);
 });
 
-function pwGenerator(
-  pwlength,
-  checkLowercase,
-  checkUppercase,
-  checkNumber,
-  checkSymbol,
-  excludeCharacter
-) {
+function pwGenerator(formbody) {
   const lowercase = "abcdefghijklmnopqrstuvwxyz";
   const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const nums = "1234567890";
@@ -55,19 +35,22 @@ function pwGenerator(
 
   let stringset = "";
   let password = "";
-
-  if (checkLowercase) stringset += lowercase;
-  if (checkUppercase) stringset += uppercase;
-  if (checkNumber) stringset += nums;
-  if (checkSymbol) stringset += symbols;
+  if (formbody.lowercase) stringset += lowercase;
+  if (formbody.uppercase) stringset += uppercase;
+  if (formbody.includeNum) stringset += nums;
+  if (formbody.includeSymbol) stringset += symbols;
   stringset = [...stringset];
-  if (excludeCharacter) {
-    stringset = stringset.filter((a) => !excludeCharacter.includes(a));
+  if (!stringset.length)
+    return "There is no valid characters in your selection.";
+  if (formbody.excludeChar) {
+    stringset = stringset.filter((a) => !formbody.excludeChar.includes(a));
   }
 
-  for (let i = 0; i < pwlength; i++) {
-    const randomNum = Math.floor(Math.random() * (stringset.length + 1));
+  for (let i = 0; i < formbody.pwlength; i++) {
+    const randomNum = Math.floor(Math.random() * stringset.length);
+
     password += stringset[randomNum];
   }
+
   return password;
 }
