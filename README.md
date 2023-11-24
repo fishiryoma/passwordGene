@@ -1,12 +1,13 @@
 # passwordGene
 
-
 Choose the length of your password, and the characters you want to put in your password, also your can type the characters you don't want to appear in your password and you can get a random Password.
 
-![index](/public/img/pdgene.gif)
+![index](/public/img/pwgene.png)
 
 ## Get Started
+
 ### Install
+
 Download the file.
 
 ```
