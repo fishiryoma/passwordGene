@@ -13,24 +13,11 @@
       {{! 密碼長度設定 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label
-            for="pwlength"
-            class="col-form-label fs-5"
-            style="letter-spacing: -0.7;"
-          >Password Length</label>
+          <label for="pwlength" class="col-form-label fs-5" style="letter-spacing: -0.7;">Password Length</label>
         </div>
         <div class="col-8">
-          <input
-            type="number"
-            class="form-control"
-            name="pwlength"
-            id="pwlength"
-            min="4"
-            max="16"
-            placeholder="Input number between 4~16"
-            value="{{option.pwlength}}"
-            required
-          />
+          <input type="number" class="form-control" name="pwlength" id="pwlength" min="4" max="16"
+            placeholder="Input number between 4~16" value="{{option.pwlength}}" required />
           <p class="text-black-50 mt-1" style="font-size: 14px;">Length is avaliable between 4 ~ 16</p>
           <div class="invalid-feedback">
             Please provide a number.
@@ -40,128 +27,87 @@
       {{! 勾選是否需要小寫字母 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label
-            for="lowercase"
-            class="col-form-label fs-5"
-            style="letter-spacing: -0.7;"
-          >Include Lowercase Characters</label>
+          <label for="lowercase" class="col-form-label fs-5" style="letter-spacing: -0.7;">Include Lowercase
+            Characters</label>
         </div>
         <div class="col-8">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="lowercase"
-            name="lowercase"
-            value="true"
-            {{#if option.lowercase}}checked{{/if}}
-          />
+          <input type="checkbox" class="form-check-input" id="lowercase" name="lowercase" value="true" {{#if
+            option.lowercase}}checked{{/if}} />
           <p class="d-inline-block ms-2">(e.g. abcdefg)</p>
         </div>
       </div>
       {{! 勾選是否需要大寫字母 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label
-            for="uppercase"
-            class="col-form-label fs-5"
-            style="letter-spacing: -0.7;"
-          >Include Uppercase Characters</label>
+          <label for="uppercase" class="col-form-label fs-5" style="letter-spacing: -0.7;">Include Uppercase
+            Characters</label>
         </div>
         <div class="col-8">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="uppercase"
-            name="uppercase"
-            value="true"
-            {{#if option.uppercase}}checked{{/if}}
-          />
+          <input type="checkbox" class="form-check-input" id="uppercase" name="uppercase" value="true" {{#if
+            option.uppercase}}checked{{/if}} />
           <p class="d-inline-block ms-2">(e.g. ABCDEFG)</p>
         </div>
       </div>
       {{! 勾選是否需要數字 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label
-            for="includeNum"
-            class="col-form-label fs-5"
-            style="letter-spacing: -0.7;"
-          >Include Numbers</label>
+          <label for="includeNum" class="col-form-label fs-5" style="letter-spacing: -0.7;">Include Numbers</label>
         </div>
         <div class="col-8">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="includeNum"
-            name="includeNum"
-            value="true"
-            {{#if option.includeNum}}checked{{/if}}
-          />
+          <input type="checkbox" class="form-check-input" id="includeNum" name="includeNum" value="true" {{#if
+            option.includeNum}}checked{{/if}} />
           <p class="d-inline-block ms-2">(e.g. 123456)</p>
         </div>
       </div>
       {{! 勾選是否需要符號 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label
-            for="includeSymbol"
-            class="col-form-label fs-5"
-            style="letter-spacing: -0.7;"
-          >Include Symbols</label>
+          <label for="includeSymbol" class="col-form-label fs-5" style="letter-spacing: -0.7;">Include Symbols</label>
         </div>
         <div class="col-8">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="includeSymbol"
-            name="includeSymbol"
-            value="true"
-            {{#if option.includeSymbol}}checked{{/if}}
-          />
+          <input type="checkbox" class="form-check-input" id="includeSymbol" name="includeSymbol" value="true" {{#if
+            option.includeSymbol}}checked{{/if}} />
           <p class="d-inline-block ms-2">(e.g. @#$%)</p>
         </div>
       </div>
       {{! 不想顯示的字元 }}
       <div class="row mb-3">
         <div class="col-4">
-          <label
-            for="excludeChar"
-            class="col-form-label fs-5"
-            style="letter-spacing: -0.7;"
-          >Exclude Characters</label>
+          <label for="excludeChar" class="col-form-label fs-5" style="letter-spacing: -0.7;">Exclude Characters</label>
         </div>
         <div class="col-8">
-          <input
-            type="text"
-            class="form-control"
-            id="excludeChar"
-            name="excludeChar"
-            placeholder="These characters will not appear in the password"
-            value="{{option.excludeChar}}"
-            {{#if option.excludeChar}}checked{{/if}}
-          />
+          <input type="text" class="form-control" id="excludeChar" name="excludeChar"
+            placeholder="These characters will not appear in the password" value="{{option.excludeChar}}" {{#if
+            option.excludeChar}}checked{{/if}} />
         </div>
       </div>
       {{! 顯示密碼欄位 }}
       <div class="row">
         <div class="col-4 d-flex align-items-center justify-content-center">
           {{! 執行按鈕 }}
-          <button
-            type="submit"
-            class="btn btn-success font-monospace py-2 px-4"
-            id="submit"
-          >Generate Password</button></div>
+          <button type="submit" class="btn btn-success font-monospace py-2 px-4" id="submit">Generate Password</button>
+        </div>
         <div class="col-8">
-          <div
-            class="p-3 d-flex align-items-center rounded"
-            style="background-color: #e3fafc;"
-          >
+          <div class="p-3 d-flex align-items-center rounded" style="background-color: #e3fafc;">
             <p class="m-0 font-monospace" style="color: #1098ad;">Your passoword
               is:</p>
-            <p
-              class="m-0 ms-3 fw-bold font-monospace"
-              style="color: #f06595;"
-            >{{#if generatedPW}}{{generatedPW}}{{/if}}</p>
+            <p class="m-0 ms-3 fw-bold" style="color: #f06595; letter-spacing: 2px;" id="password">{{#if
+              generatedPW}}{{generatedPW}}
+              {{else}}{{pwIsFalse}}
+              {{/if}}</p>
+            <a class="btn btn-outline-success ms-3 p-1 fw-bold" style="font-size: 10px;" id="copy-btn">COPY</a>
+            <!-- Modal -->
+            <div class="modal fade" id="copyMsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content d-flex">
+                  <div class="modal-body text-center fs-3">
+                    Copied
+                  </div>
+                  <button type="button" class="btn btn-success mx-auto mb-3 p-1" data-bs-dismiss="modal"
+                    style="mx-width: 50%; font-size: 12px;">Close</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -175,7 +121,23 @@
 
 <script>
   const form = document.querySelector('#form'); form.addEventListener('submit',
-  function valid(e){ if(!form.checkValidity()){ e.preventDefault();
-  e.stopPropagation(); } form.classList.add('was-validated') })
-
+    function valid(e) {
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+      } form.classList.add('was-validated')
+    })
 </script>
+
+{{#if generatedPW}}
+<script>
+  const copyBtn = document.querySelector('#copy-btn');
+  copyBtn.addEventListener('click', function (e) {
+    navigator.clipboard.writeText(document.querySelector('#password').textContent).then(() => {
+      // 複製成功後，手動彈出 Bootstrap modal
+      const copyMsgModal = new bootstrap.Modal(document.querySelector('#copyMsg'));
+      copyMsgModal.show();
+    }).catch((error) => console.log(error))
+  });
+</script>
+{{/if}}

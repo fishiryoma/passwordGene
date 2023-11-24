@@ -20,7 +20,8 @@ app.get("/pwgenerator", (req, res) => {
 app.post("/pwgenerator", (req, res) => {
   const option = req.body;
   const generatedPW = pwGenerator(option);
-  res.render("index", { generatedPW, option });
+  const pwIsFalse = "There is no valid characters in your selection.";
+  res.render("index", { generatedPW, option, pwIsFalse });
 });
 
 app.listen(port, () => {
@@ -40,8 +41,7 @@ function pwGenerator(formbody) {
   if (formbody.includeNum) stringset += nums;
   if (formbody.includeSymbol) stringset += symbols;
   stringset = [...stringset];
-  if (!stringset.length)
-    return "There is no valid characters in your selection.";
+  if (!stringset.length) return;
   if (formbody.excludeChar) {
     stringset = stringset.filter((a) => !formbody.excludeChar.includes(a));
   }
